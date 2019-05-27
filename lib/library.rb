@@ -16,4 +16,8 @@ class Library
   def return_book(id, book_name)
     member_list.return_book(id, book_name)
   end
+
+  def view_member(id)
+    member_list.view_member(id)
+  end
 end

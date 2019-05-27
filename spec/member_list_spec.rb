@@ -34,8 +34,7 @@ describe MemberList do
       id_double_2 = double('id_double_2', id: 10)
       id_double_3 = double('id_double_3', id: 15)
       list = described_class.new(member_class,
-        [id_double_1, id_double_2, matching_id_double, id_double_3 ]
-      )
+                                 [id_double_1, id_double_2, matching_id_double, id_double_3])
       expect(matching_id_double).to receive(:check_out).with('a book')
 
       list.assign_book(7, 'a book')
@@ -50,11 +49,25 @@ describe MemberList do
       id_double_2 = double('id_double_2', id: 10)
       id_double_3 = double('id_double_3', id: 15)
       list = described_class.new(member_class,
-        [id_double_1, id_double_2, matching_id_double, id_double_3 ]
-      )
+                                 [id_double_1, id_double_2, matching_id_double, id_double_3])
       expect(matching_id_double).to receive(:return_item).with('a book')
 
       list.return_book(7, 'a book')
+    end
+  end
+
+  describe '#view_member' do
+    it 'can view a member in the list of they exist with the id' do
+      matching_id_double = double('matching_id_double', id: 7)
+      allow(matching_id_double).to receive(:display_details)
+      id_double_1 = double('id_double_1', id: 5)
+      id_double_2 = double('id_double_2', id: 10)
+      id_double_3 = double('id_double_3', id: 15)
+      list = described_class.new(member_class,
+                                 [id_double_1, id_double_2, matching_id_double, id_double_3])
+      expect(matching_id_double).to receive(:display_details)
+
+      list.view_member(7)
     end
   end
 end
