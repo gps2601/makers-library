@@ -2,7 +2,7 @@ require 'member_list'
 
 describe MemberList do
   subject(:list)      { described_class.new(member_class) }
-  let(:member_class)  { double(:member_class, :new => member) }
+  let(:member_class)  { double(:member_class, new: member) }
   let(:member)        { double(:member) }
 
   it 'initializes with an emtpy list of members' do

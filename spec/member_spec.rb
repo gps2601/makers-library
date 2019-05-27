@@ -30,7 +30,8 @@ describe Member do
     end
 
     it('thows an error if the passed item has not been checked out') do
-      expect{ member.return_item('book') }.to raise_error('Item has not been checked out!')
+      expect { member.return_item('book') }
+        .to raise_error('Item has not been checked out!')
     end
   end
 end

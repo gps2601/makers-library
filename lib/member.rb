@@ -12,7 +12,8 @@ class Member
   end
 
   def return_item(item)
-    raise 'Item has not been checked out!' if !checked_out_items.include?(item)
+    raise 'Item has not been checked out!' unless checked_out_items.include?(item)
+
     checked_out_items.delete(item)
   end
 end
