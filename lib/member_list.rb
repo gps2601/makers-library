@@ -11,12 +11,23 @@ class MemberList
   end
 
   def assign_book(id, book_name)
-    member = members.find{|member| member.id == id }
+    member = find_member_by_id(id)
     member.check_out(book_name)
   end
 
   def return_book(id, book_name)
-    member = members.find{|member| member.id == id }
+    member = find_member_by_id(id)
     member.return_item(book_name)
+  end
+
+  def view_member(id)
+    member = find_member_by_id(id)
+    member.display_details
+  end
+
+  private
+
+  def find_member_by_id(id)
+    members.find { |member| member.id == id }
   end
 end

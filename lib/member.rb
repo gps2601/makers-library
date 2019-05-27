@@ -16,4 +16,8 @@ class Member
 
     checked_out_items.delete(item)
   end
+
+  def display_details
+    "ID: #{id_number}, Name: #{name}, Checked out: #{checked_out_items}"
+  end
 end

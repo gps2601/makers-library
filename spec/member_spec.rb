@@ -34,4 +34,10 @@ describe Member do
         .to raise_error('Item has not been checked out!')
     end
   end
+
+  describe '#display_details' do
+    it 'can display details for no checkout' do
+      expect(member.display_details).to eq("ID: 12345, Name: Bananaman, Checked out: []")
+    end
+  end
 end
