@@ -5,7 +5,7 @@ describe MemberList do
   let(:member_class)  { double(:member_class, new: member) }
   let(:member)        { double(:member) }
 
-  it 'initializes with an emtpy list of members' do
+  it 'initializes with an empty list of members' do
     expect(list.members).to be_empty
   end
 
@@ -23,6 +23,38 @@ describe MemberList do
 
   describe '#remove' do
     it 'removes a user from the list' do
+    end
+  end
+
+  describe '#assign_book' do
+    it 'can assign a book to a member in the list of they exist with the id' do
+      matching_id_double = double('matching_id_double', id: 7)
+      allow(matching_id_double).to receive(:check_out).with('a book')
+      id_double_1 = double('id_double_1', id: 5)
+      id_double_2 = double('id_double_2', id: 10)
+      id_double_3 = double('id_double_3', id: 15)
+      list = described_class.new(member_class,
+        [id_double_1, id_double_2, matching_id_double, id_double_3 ]
+      )
+      expect(matching_id_double).to receive(:check_out).with('a book')
+
+      list.assign_book(7, 'a book')
+    end
+  end
+
+  describe '#return_book' do
+    it 'can return a book from a member in the list of they exist with the id' do
+      matching_id_double = double('matching_id_double', id: 7)
+      allow(matching_id_double).to receive(:return_item).with('a book')
+      id_double_1 = double('id_double_1', id: 5)
+      id_double_2 = double('id_double_2', id: 10)
+      id_double_3 = double('id_double_3', id: 15)
+      list = described_class.new(member_class,
+        [id_double_1, id_double_2, matching_id_double, id_double_3 ]
+      )
+      expect(matching_id_double).to receive(:return_item).with('a book')
+
+      list.return_book(7, 'a book')
     end
   end
 end
